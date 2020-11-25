@@ -18,6 +18,7 @@ syn match yardDeprecated "@deprecated" contained
 syn match yardExample "@example" contained
 syn match yardNote "@note" contained
 syn match yardOption "@option" contained
+syn match yardOptionName /@option \h\+/hs=s+8 contained contains=yardOption
 syn match yardOverload "@overload" contained
 syn match yardParam "@param" contained
 syn match yardParamName /@param \h\+/hs=s+7 contained contains=yardParam
@@ -31,7 +32,7 @@ syn match yardVersion "@version" contained
 syn match yardYield "@yield" contained
 syn match yardYieldParam "@yieldparam" contained
 syn match yardYieldReturn "@yieldreturn" contained
-syn cluster yardTags contains=yardGenericTag,yardAbstract,yardApi,yardAttr,yardAttrReader,yardAttrWriter,yardAuthor,yardDeprecated,yardExample,yardNote,yardOption,yardOverload,yardParam,yardParamName,yardPrivate,yardRaise,yardReturn,yardSee,yardSince,yardTodo,yardVersion,yardYield,yardYieldParam,yardYieldReturn
+syn cluster yardTags contains=yardGenericTag,yardAbstract,yardApi,yardAttr,yardAttrReader,yardAttrWriter,yardAuthor,yardDeprecated,yardExample,yardNote,yardOption,yardOptionName,yardOverload,yardParam,yardParamName,yardPrivate,yardRaise,yardReturn,yardSee,yardSince,yardTodo,yardVersion,yardYield,yardYieldParam,yardYieldReturn
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Directives
@@ -91,6 +92,7 @@ hi def link yardDeprecated yardGenericTag
 hi def link yardExample yardGenericTag
 hi def link yardNote yardGenericTag
 hi def link yardOption yardGenericTag
+hi def link yardOptionName yardGenericTag
 hi def link yardOverload yardGenericTag
 hi def link yardParam yardGenericTag
 hi def link yardPrivate yardGenericTag
