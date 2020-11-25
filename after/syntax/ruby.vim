@@ -58,7 +58,7 @@ syn match yardLiteral "\(true\|false\|nil\|self\|void\)" contained
 syn match yardComma "," nextgroup=@yardTypes contained
 syn match yardArrow "=>" nextgroup=@yardTypes contained
 
-syn region yardParametricType start="[A-Z]\+\h\+<" end=">" contains=yardType,yardOrderDependentList,yardComma skipwhite contained
+syn region yardParametricType start="[A-Z]\+\h\+<" end=">" contains=@yardTypes,yardOrderDependentList,yardComma skipwhite contained
 syn region yardOrderDependentList start="(" end=")" contains=@yardTypes,yardComma skipwhite contained
 syn region yardTypeList start="\[" end="]" contains=@yardTypes,yardOrderDependentList,@yardHashes skipwhite contained
 syn region yardHashAngle start="Hash<" end=">" contains=yardDuckType,yardType,yardLiteral,yardArrow,yardComma skipwhite contained
