@@ -7,7 +7,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tags
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-syn match yardGenericTag "@\h\+" contained
+syn match yardGenericTag "@\w\+" contained
 syn match yardAbstract "@abstract" contained
 syn match yardApi "@api" contained
 syn match yardAttr "@attr" contained
@@ -18,10 +18,10 @@ syn match yardDeprecated "@deprecated" contained
 syn match yardExample "@example" contained
 syn match yardNote "@note" contained
 syn match yardOption "@option" contained
-syn match yardOptionName /@option \h\+/hs=s+8 contained contains=yardOption
+syn match yardOptionName /@option \w\+/hs=s+8 contained contains=yardOption
 syn match yardOverload "@overload" contained
 syn match yardParam "@param" contained
-syn match yardParamName /@param \h\+/hs=s+7 contained contains=yardParam
+syn match yardParamName /@param \w\+/hs=s+7 contained contains=yardParam
 syn match yardPrivate "@private" contained
 syn match yardRaise "@raise" contained
 syn match yardReturn "@return" contained
@@ -37,7 +37,7 @@ syn cluster yardTags contains=yardGenericTag,yardAbstract,yardApi,yardAttr,yardA
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Directives
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-syn match yardGenericDirective "@!\h\+" contained
+syn match yardGenericDirective "@!\w\+" contained
 syn match yardAttribute "@!attribute" contained
 syn match yardEndGroup "@!endgroup" contained
 syn match yardGroup "@!group" contained
@@ -52,13 +52,13 @@ syn cluster yardDirectives contains=yardGenericDirective,yardAttribute,yardEndGr
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Types, Lists, and Hashes
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-syn match yardDuckType "#\h\+" contained
-syn match yardType "[A-Z]\h\+" contained
+syn match yardDuckType "#\w\+" contained
+syn match yardType "[A-Z]\w\+" contained
 syn match yardLiteral "\(true\|false\|nil\|self\|void\)" contained
 syn match yardComma "," nextgroup=@yardTypes contained
 syn match yardArrow "=>" nextgroup=@yardTypes contained
 
-syn region yardParametricType start="[A-Z]\+\h\+<" end=">" contains=@yardTypes,yardOrderDependentList,yardComma skipwhite contained
+syn region yardParametricType start="[A-Z]\+\w\+<" end=">" contains=@yardTypes,yardOrderDependentList,yardComma skipwhite contained
 syn region yardOrderDependentList start="(" end=")" contains=@yardTypes,yardComma skipwhite contained
 syn region yardTypeList start="\[" end="]" contains=@yardTypes,yardOrderDependentList,@yardHashes skipwhite contained
 syn region yardHashAngle start="Hash<" end=">" contains=yardDuckType,yardType,yardLiteral,yardArrow,yardComma skipwhite contained
@@ -71,7 +71,7 @@ syn cluster yardLists contains=yardComma,yardTypeList,yardOrderDependentList
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Yard
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-syn match yardComment "#\s*@!\{,1}\h\+.*" contains=@yardTags,@yardDirectives,yardTypeList
+syn match yardComment "#\s*@!\{,1}\w\+.*" contains=@yardTags,@yardDirectives,yardTypeList
 syn match rubyComment "#.*" contains=rubySharpBang,rubySpaceError,rubyTodo,@Spell,yardComment
 syn region rubyMultilineComment start="\%(\%(^\s*#.*\n\)\@<!\%(^\s*#.*\n\)\)\%(\(^\s*#.*\n\)\{1,}\)\@=" end="\%(^\s*#.*\n\)\@<=\%(^\s*#.*\n\)\%(^\s*#\)\@!" contains=rubyComment transparent fold keepend
 syn cluster rubyNotTop add=@yardTags,@yardDirectives,@yardTypes,@yardLists,@yardHashes
